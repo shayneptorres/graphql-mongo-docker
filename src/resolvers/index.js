@@ -1,26 +1,30 @@
-import {dib, dibs} from "./dib-resolver";
-import {user} from "./user-resolver";
+import {dib, dibs, createDib} from "./dib-resolver";
+import {user, createUser} from "./user-resolver";
 
-import axios from "axios";
+import User from "../models/user";
 
 export const resolvers = {
     Query: {
         dib,
-        dibs,
         user
+    },
+    Mutation: {
+        createUser,
+        createDib
     },
     Dib: {
         user(root,args){
-            return axios.get(`http://localhost:3000/users/${root.uid}`)
-            .then(resp => resp.data);
-        }
-    },
-    User: {
-        dibs(root,args){
-            console.log("ROOT");
-            console.log(root);
-            return axios.get(`http://localhost:3000/dibs?uid=${root.id}`)
-            .then(resp => resp.data);
+            return User.findById(root.uid, (err,user) =>{
+                if (err) {
+                    console.log("Error gettig user for dib");
+                    return {
+                        data:{},
+                        success:false
+                    }
+                }
+
+                return user
+            }).then(user => user);
         }
     }
 }

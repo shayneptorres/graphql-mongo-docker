@@ -3,14 +3,17 @@ import express from "express";
 import bodyParser from "body-parser";
 import { graphql, GraphQLSchema } from "graphql";
 import { graphiqlExpress, graphqlExpress } from "graphql-server-express";
+import mongoose from "mongoose";
 
 import config from "./config/config";
 import schema from "./schema/index";
 
+
+
 const app = express();
 
 app.server = http.createServer(app);
-
+mongoose.connect(config.mongoURL);
 // Routes
 
 app.use("/graphql", bodyParser.json(),graphqlExpress({schema}));

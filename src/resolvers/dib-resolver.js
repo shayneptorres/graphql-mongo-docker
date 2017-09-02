@@ -1,13 +1,37 @@
-import axios from "axios";
+import Dib from "../models/dib";
 
 export const dib = (root,args) => {
-    console.log(`GET http://localhost:3000/dibs/${args.id}`);
-    return axios.get(`http://localhost:3000/dibs/${args.id}`)
-        .then(resp => resp.data);
+    return Dib.findById(args.id, (err,dib) =>{
+        if (err){
+            return {
+                data:{},
+                success:false
+            }
+        }
+
+        return dib
+    }).then(dib => dib);
 }
 
 export const dibs = (root,args) => {
-    console.log(`GET http://localhost:3000/dibs`);
-    return axios.get(`http://localhost:3000/dibs/`)
-        .then(resp => resp.data);
+    
+}
+
+export const createDib = (root,args) => {
+    let newDib = new Dib();
+    newDib.title = args.title;
+    newDib.desc = args.desc;
+    newDib.uid = args.uid;
+
+    return newDib.save(err => {
+        if (err) {
+            console.log("Error creating dib: ",err);
+            return {
+                data:{},
+                success:false
+            }
+        }
+
+        return newDib;
+    }).then(dib => dib);
 }
