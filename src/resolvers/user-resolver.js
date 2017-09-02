@@ -1,8 +1,7 @@
-import axios from "axios";
 import User from "../models/user";
 
 export const user = (root,args) => {
-    const id = root.uid ? root.uid : args.id
+    const id = root ? root.uid : args.id
     return User.findById(id, (err,user) =>{
         if (err) {
             console.log(object);
