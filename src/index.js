@@ -19,3 +19,4 @@ app.use("/graphiql",graphiqlExpress({endpointURL:"/graphql"}));
 app.listen(config.port);
 console.log("Listening on port " + config.port);
 
+export default app;

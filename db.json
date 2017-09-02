@@ -1,0 +1,32 @@
+{
+    "dibs":[
+        {
+            "id": "0",
+            "name": "Car",
+            "desc": "This is a cool car",
+            "uid":0
+        },
+        {
+            "id": "1",
+            "name": "Home",
+            "desc": "This is a cool home",
+            "uid":1
+        },
+        {
+            "id": "2",
+            "name": "Pizza",
+            "desc": "This is yummy pizza",
+            "uid":0
+        }
+    ],
+    "users":[
+        {
+            "id": "0",
+            "name": "Phil"
+        },
+        {
+            "id": "1",
+            "name": "Sarah"
+        }
+    ]
+}
