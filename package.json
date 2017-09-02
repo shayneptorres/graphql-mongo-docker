@@ -1,0 +1,29 @@
+{
+  "name": "dibit-api",
+  "version": "1.0.0",
+  "description": "API implenting GraphQL for Dibit Web/iOS applications",
+  "main": "server.js",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon -w src --exec \"babel-node src --presets es2015,stage-0\"",
+    "build": "babel src -s -D -d dist --presets es2015,stage-0",
+    "start": "NODE_ENV=production pm2 start dist",
+    "prestart": "npm run -s build",
+    "lint": "eslint src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shayne Torres",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "graphql": "^0.11.2",
+    "graphql-server-express": "^1.1.2",
+    "graphql-tools": "^1.2.2",
+    "http": "0.0.0",
+    "json-server": "^0.12.0",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.11.9",
+    "nodemon": "^1.11.0"
+  }
+}
