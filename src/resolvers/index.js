@@ -13,18 +13,6 @@ export const resolvers = {
         createDib
     },
     Dib: {
-        user(root,args){
-            return User.findById(root.uid, (err,user) =>{
-                if (err) {
-                    console.log("Error gettig user for dib");
-                    return {
-                        data:{},
-                        success:false
-                    }
-                }
-
-                return user
-            }).then(user => user);
-        }
+        user
     }
 }

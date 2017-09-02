@@ -2,13 +2,13 @@ import axios from "axios";
 import User from "../models/user";
 
 export const user = (root,args) => {
-    return User.findById(args.id, (err,user) =>{
+    const id = root.uid ? root.uid : args.id
+    return User.findById(id, (err,user) =>{
         if (err) {
             console.log(object);
             return {
-                name:"",
-                id:"",
-                email:""
+                data:{},
+                success:false
             }
         }
 
