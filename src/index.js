@@ -13,7 +13,16 @@ import schema from "./schema/index";
 const app = express();
 
 app.server = http.createServer(app);
-mongoose.connect(config.mongoURL);
+
+let mongoURL = ""
+
+if(app.settings.env == "development"){
+    mongoURL = config.devMongoURL
+} else {
+    mongoURL = config.dockerMongoURL
+}
+
+mongoose.connect(mongoURL);
 // Routes
 
 app.use("/graphql", bodyParser.json(),graphqlExpress({schema}));
@@ -21,5 +30,6 @@ app.use("/graphiql",graphiqlExpress({endpointURL:"/graphql"}));
 
 app.listen(config.port);
 console.log("Listening on port " + config.port);
+
 
 export default app;
