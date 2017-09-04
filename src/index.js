@@ -30,8 +30,10 @@ mongoose.connect("mongodb://heroku_pxlprzqx:124llhve5lep4aq27224oseion@ds119064.
 app.use("/graphql", bodyParser.json(),graphqlExpress({schema}));
 app.use("/graphiql",graphiqlExpress({endpointURL:"/graphql"}));
 
-app.listen(config.port);
-console.log("Listening on port " + config.port);
+let port = process.env.PORT || config.port
+
+app.listen(port);
+console.log("Listening on port " + port);
 
 
 export default app;
