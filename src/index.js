@@ -19,10 +19,12 @@ let mongoURL = ""
 if(app.settings.env == "development"){
     mongoURL = config.devMongoURL
 } else {
+    console.log("ENVs:", process.env);
     mongoURL = process.env.MONGODB_URI;
 }
 
-mongoose.connect(mongoURL);
+mongoose.connect("mongodb://heroku_pxlprzqx:124llhve5lep4aq27224oseion@ds119064.mlab.com:19064/heroku_pxlprzqx");
+// mongoose.connect(mongoURL);
 // Routes
 
 app.use("/graphql", bodyParser.json(),graphqlExpress({schema}));
