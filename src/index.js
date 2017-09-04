@@ -19,7 +19,7 @@ let mongoURL = ""
 if(app.settings.env == "development"){
     mongoURL = config.devMongoURL
 } else {
-    mongoURL = config.dockerMongoURL
+    mongoURL = process.env.MONGODB_URI;
 }
 
 mongoose.connect(mongoURL);
