@@ -1,7 +1,6 @@
 import http from "http";
 import express from "express";
 import bodyParser from "body-parser";
-import { graphql, GraphQLSchema } from "graphql";
 import { graphiqlExpress, graphqlExpress } from "graphql-server-express";
 import mongoose from "mongoose";
 
@@ -23,7 +22,7 @@ if(app.settings.env == "development"){
     mongoURL = process.env.MONGODB_URI;
 }
 
-mongoose.connect("mongodb://heroku_pxlprzqx:124llhve5lep4aq27224oseion@ds119064.mlab.com:19064/heroku_pxlprzqx");
+mongoose.connect(mongoURL);
 // mongoose.connect(mongoURL);
 // Routes
 
