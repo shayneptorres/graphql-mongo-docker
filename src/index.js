@@ -18,7 +18,7 @@ let mongoURL = ""
 if(app.settings.env == "development"){
     mongoURL = config.devMongoURL
 } else {
-    console.log("ENVs:", process.env);
+    console.log("MongoURI: ",process.env.MONGODB_URI);
     mongoURL = process.env.MONGODB_URI;
 }
 
