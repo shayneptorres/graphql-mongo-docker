@@ -1,18 +1,20 @@
 import {dib, dibs, createDib} from "./dib-resolver";
-import {user, createUser} from "./user-resolver";
+import {user} from "./user-resolver";
+import {signUp} from "./signUpResolver";
+import {login} from "./loginResolver";
 
-import User from "../models/user";
 
 export const resolvers = {
     Query: {
+        signUp,
+        login,
         dib,
         user
     },
-    Mutation: {
-        createUser,
-        createDib
+    User: {
+        dibs
     },
-    Dib: {
-        user
+    Mutation: {
+        createDib
     }
 }

@@ -6,24 +6,40 @@ type Dib {
     id: String
     title: String
     desc: String
+    url: String
     uid: String
     user: User
 }
 
+type Group {
+    id: String
+    appID: String
+    name: String
+    desc: String
+    users: [User]
+    dibs: [Dib]
+}
+
 type User {
     id: String
-    name: String
+    appID: String
+    username: String
     email: String
+    password: String
+    access_token: String
+    dibs: [Dib]
+    groups: [Group]
 }
 
 type Query {
+    signUp(email: String, password: String, username: String) : User
+    login(email: String, password: String) : User
     dib(id : String) : Dib
     user(id: String) : User
 }
 
 type Mutation {
-    createUser(email:String,name:String) : User
-    createDib(title:String,desc:String,uid:String) : Dib
+    createDib(id: String, access_token: String, title: String, desc: String, url: String) : Dib
 }
 `
 

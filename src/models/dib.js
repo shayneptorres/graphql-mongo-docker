@@ -5,7 +5,8 @@ let Schema = mongoose.Schema;
 let Dib = new Schema({
     title: String,
     desc: String,
-    uid: String
+    uid: String,
+    url: String
 });
 
 module.exports = mongoose.model("Dib",Dib);

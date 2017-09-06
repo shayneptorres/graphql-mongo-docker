@@ -1,4 +1,5 @@
 import Dib from "../models/dib";
+import {validateUser} from "./userValidation";
 
 export const dib = (root,args) => {
     return Dib.findById(args.id, (err,dib) =>{
@@ -14,24 +15,33 @@ export const dib = (root,args) => {
 }
 
 export const dibs = (root,args) => {
-    
+    return Dib.find({uid:root.id},(err,dibs) => {
+        if (err) {
+            return null
+        } else {
+            return dibs
+        }
+    }).then(dibs => dibs)
 }
 
 export const createDib = (root,args) => {
-    let newDib = new Dib();
-    newDib.title = args.title;
-    newDib.desc = args.desc;
-    newDib.uid = args.uid;
-
-    return newDib.save(err => {
-        if (err) {
-            console.log("Error creating dib: ",err);
-            return {
-                data:{},
-                success:false
-            }
+    return validateUser(args).then(user => {
+        if (user){
+            let newDib = new Dib();
+            newDib.title = args.title;
+            newDib.desc = args.desc;
+            newDib.uid = args.id;
+            newDib.url = args.url;
+        
+            return newDib.save(err => {
+                if (err) {
+                    return null
+                }
+        
+                return newDib;
+            }).then(dib => dib);
+        } else {
+            return null
         }
-
-        return newDib;
-    }).then(dib => dib);
+    })
 }
