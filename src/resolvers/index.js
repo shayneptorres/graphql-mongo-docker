@@ -14,6 +14,9 @@ export const resolvers = {
     User: {
         dibs
     },
+    Dib: {
+        user
+    },
     Mutation: {
         createDib
     }

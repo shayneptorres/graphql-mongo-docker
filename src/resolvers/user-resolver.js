@@ -1,16 +1,15 @@
 import User from "../models/user";
-import { dibs } from "./dib-resolver";
 
 export const user = (root,args) => {
-    const id = root ? root.uid : args.id
-    return User.findById(id, (err,user) =>{
-        if (!err) {
-            console.log(err);
-            return {
-                data:{},
-                success:false
-            }
+    let id = root ? root.uid : args.id
+    return User.findById(id, (err,user) => {
+        console.log(user);
+        if (user) {
+            console.log("user was found");
+            return user
+        } else {
+            console.log("user does not exist");
+            return null
         }
-        return user
     }).then(user => user);
 }
