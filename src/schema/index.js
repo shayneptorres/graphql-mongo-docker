@@ -40,6 +40,7 @@ type Query {
 
 type Mutation {
     createDib(id: String, access_token: String, title: String, desc: String, url: String) : Dib
+    createGroup(id: String, access_token: String, name: String, desc: String) : Group
 }
 `
 

@@ -1,9 +1,10 @@
 import User from "../models/user";
+import Group from "../models/group";
+import mongoose from "mongoose";
 
 export const user = (root,args) => {
     let id = root ? root.uid : args.id
     return User.findById(id, (err,user) => {
-        console.log(user);
         if (user) {
             console.log("user was found");
             return user
@@ -12,4 +13,15 @@ export const user = (root,args) => {
             return null
         }
     }).then(user => user);
+}
+
+export const usersForGroup = (root,args) => {
+    let id = root.id
+    let objID = new mongoose.Types.ObjectId(id)
+    return User.find( { groups: { $all: [ objID ] } } ,(users,err) => {
+        if (err) {
+            return null;
+        }
+        return users;
+    }).then((users) => users );
 }
