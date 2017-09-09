@@ -37,6 +37,7 @@ type Query {
     dib(uid : String) : Dib
     user(uid: String) : User
     group(id: String) : Group
+    groups(name: String) : [Group]
 }
 
 type Mutation {

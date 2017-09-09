@@ -44,8 +44,22 @@ export const groupsForUser = (root,args) => {
     let objID = new mongoose.Types.ObjectId(id)
     return Group.find( { users: { $all: [ objID ] } } ,(groups,err) => {
         if (err) {
-            return null;
+            return [];
         }
         return groups;
     }).then((groups) => groups );
+}
+
+export const groupsByName = (root,args) => {
+    let sanitizedName = args.name.replace(" ", "")
+    if (sanitizedName == "") { 
+        return []
+    }
+    return Group.find({name: new RegExp(args.name, 'i')}, (groups,err) => {
+        if (err) {
+            console.log("There was an error finding groups");
+            return null;
+        }
+        return groups
+    }).then(groups => groups);
 }
