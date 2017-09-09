@@ -27,6 +27,18 @@ export const createGroup = (root,args) => {
     })
 }
 
+export const group = (root,args) => {
+    let id = args.id
+    return Group.findById(id,(group,err) => {
+        if (err) {
+            console.log("There was an error finding the group");
+            return null;
+        }
+
+        return group;
+    }).then(group => group);
+}
+
 export const groupsForUser = (root,args) => {
     let id = root.id
     let objID = new mongoose.Types.ObjectId(id)

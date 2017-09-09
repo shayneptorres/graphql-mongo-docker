@@ -34,13 +34,14 @@ type User {
 type Query {
     signUp(email: String, password: String, username: String) : User
     login(email: String, password: String) : User
-    dib(id : String) : Dib
-    user(id: String) : User
+    dib(uid : String) : Dib
+    user(uid: String) : User
+    group(id: String) : Group
 }
 
 type Mutation {
-    createDib(id: String, groupId: String, access_token: String, title: String, desc: String, url: String) : Dib
-    createGroup(id: String, access_token: String, name: String, desc: String) : Group
+    createDib(uid: String, groupId: String, access_token: String, title: String, desc: String, url: String) : Dib
+    createGroup(uid: String, access_token: String, name: String, desc: String) : Group
 }
 `
 

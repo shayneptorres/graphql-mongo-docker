@@ -2,7 +2,7 @@ import User from "../models/user";
 import bcrypt from "bcrypt-nodejs";
 
 export const validateUser = (args) => {
-    return User.findById(args.id, (err,user) => {
+    return User.findById(args.uid, (err,user) => {
         console.log(user);
         if (user) {
             console.log("user was found");
