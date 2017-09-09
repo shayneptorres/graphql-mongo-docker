@@ -1,5 +1,6 @@
 import Group from "../models/group";
 import {validateUser} from "./userValidation";
+import mongoose from "mongoose";
 
 export const createGroup = (root,args) => {
     return validateUser(args).then(user => {
@@ -24,4 +25,15 @@ export const createGroup = (root,args) => {
             return null
         }
     })
+}
+
+export const groupsForUser = (root,args) => {
+    let id = root.id
+    let objID = new mongoose.Types.ObjectId(id)
+    return Group.find( { users: { $all: [ objID ] } } ,(groups,err) => {
+        if (err) {
+            return null;
+        }
+        return groups;
+    }).then((groups) => groups );
 }

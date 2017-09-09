@@ -1,4 +1,6 @@
 import Dib from "../models/dib";
+import Group from "../models/group";
+import mongoose from "mongoose";
 import {validateUser} from "./userValidation";
 
 export const dib = (root,args) => {
@@ -24,6 +26,7 @@ export const dibs = (root,args) => {
     }).then(dibs => dibs)
 }
 
+// createDib(uid: String, groupId: String, access_token: String, title: String, desc: String, url: String) : Dib
 export const createDib = (root,args) => {
     return validateUser(args).then(user => {
         if (user){
@@ -32,14 +35,27 @@ export const createDib = (root,args) => {
             newDib.desc = args.desc;
             newDib.uid = args.id;
             newDib.url = args.url;
-        
-            return newDib.save(err => {
+            newDib.group = args.groupId;
+            user.dibs.push(newDib);
+            user.save();
+            return Group.findById(args.groupId,(group,err) => {
                 if (err) {
+                    console.log("There was an error finding the group");
                     return null
                 }
-        
-                return newDib;
-            }).then(dib => dib);
+                return group;
+            }).then((group) => {
+                group.dibs.push(newDib);
+                group.save();
+                newDib.group = group;
+                return newDib.save(err => {
+                    if (err) {
+                        return null
+                    }
+            
+                    return newDib;
+                }).then(dib => dib);
+            })    
         } else {
             return null
         }

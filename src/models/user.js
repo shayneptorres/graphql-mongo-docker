@@ -8,7 +8,8 @@ let User = new Schema({
     appID: String,
     password: String,
     access_token: String,
-    groups: [{type: Schema.Types.ObjectId, ref: "Group"}] 
+    groups: [{type: Schema.Types.ObjectId, ref: "Group"}],
+    dibs: [{type: Schema.Types.ObjectId, ref: "Dib"}]
 });
 
 module.exports = mongoose.model("User",User);
