@@ -35,6 +35,7 @@ type Query {
     signUp(email: String, password: String, username: String) : User
     login(email: String, password: String) : User
     dib(uid : String) : Dib
+    dibs(uid: String, access_token: String) : [Dib]
     user(uid: String) : User
     group(id: String) : Group
     groups(name: String) : [Group]

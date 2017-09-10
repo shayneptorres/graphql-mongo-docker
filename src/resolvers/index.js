@@ -1,4 +1,4 @@
-import { dib, dibs, dibsForGroup, createDib } from "./dib-resolver";
+import { dib, dibs, dibsForUser, dibsForGroup, createDib } from "./dib-resolver";
 import { user, usersForGroup } from "./user-resolver";
 import { signUp } from "./signUpResolver";
 import { login } from "./loginResolver";
@@ -10,6 +10,7 @@ export const resolvers = {
         signUp,
         login,
         dib,
+        dibs,
         user,
         group,
         groups: groupsByName
@@ -19,7 +20,7 @@ export const resolvers = {
         dibs: dibsForGroup
     },
     User: {
-        dibs,
+        dibs: dibsForUser,
         groups: groupsForUser
     },
     Dib: {

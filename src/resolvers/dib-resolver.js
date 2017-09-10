@@ -17,6 +17,20 @@ export const dib = (root,args) => {
 }
 
 export const dibs = (root,args) => {
+    return validateUser(args).then(user => {
+        if (user) {
+            let id = user.id
+            return Dib.find( { uid: id } ,(dibs,err) => {
+                if (err) {
+                    return [];
+                }
+                return dibs;
+            }).then((dibs) => dibs );
+        }
+    })
+}
+
+export const dibsForUser = (root,args) => {
     return Dib.find({uid:root.id},(err,dibs) => {
         if (err) {
             return null
