@@ -2,7 +2,7 @@ import { dib, dibs, dibsForUser, dibsForGroup, createDib } from "./dib-resolver"
 import { user, usersForGroup } from "./user-resolver";
 import { signUp } from "./signUpResolver";
 import { login } from "./loginResolver";
-import { group, groupsByName, createGroup, groupsForUser } from "./groupResolver";
+import { group, groupsByName, createGroup, groupsForUser, groupForDib } from "./groupResolver";
 
 
 export const resolvers = {
@@ -24,7 +24,8 @@ export const resolvers = {
         groups: groupsForUser
     },
     Dib: {
-        user
+        user,
+        group: groupForDib
     },
     Mutation: {
         createDib,

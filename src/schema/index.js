@@ -9,6 +9,7 @@ type Dib {
     url: String
     uid: String
     user: User
+    group: Group
 }
 
 type Group {

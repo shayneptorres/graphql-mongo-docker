@@ -72,6 +72,7 @@ export const createDib = (root,args) => {
                 group.dibs.push(newDib);
                 group.save();
                 newDib.group = group;
+                newDib.groupId = group.id;
                 return newDib.save(err => {
                     if (err) {
                         return null

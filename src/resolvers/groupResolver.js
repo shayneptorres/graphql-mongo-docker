@@ -50,6 +50,15 @@ export const groupsForUser = (root,args) => {
     }).then((groups) => groups );
 }
 
+export const groupForDib = (root,args) => {
+    return Group.findById(root.group,(group,err) => {
+        if (err) {
+            return null
+        }
+        return group
+    }).then(group => group);
+}
+
 export const groupsByName = (root,args) => {
     let sanitizedName = args.name.replace(" ", "")
     if (sanitizedName == "") { 
