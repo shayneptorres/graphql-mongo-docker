@@ -5,8 +5,8 @@ let Schema = mongoose.Schema;
 let Dib = new Schema({
     title: String,
     desc: String,
-    uid: String,
     url: String,
+    user: {type: Schema.Types.ObjectId, ref: "User"},
     group: {type: Schema.Types.ObjectId, ref: "Group"}
 });
 

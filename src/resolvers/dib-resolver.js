@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import {validateUser} from "./userValidation";
 
 export const dib = (root,args) => {
-    return Dib.findById(args.uid, (err,dib) =>{
+    return Dib.findById(args.id, (err,dib) =>{
         if (err){
             return {
                 data:{},
@@ -19,8 +19,8 @@ export const dib = (root,args) => {
 export const dibs = (root,args) => {
     return validateUser(args).then(user => {
         if (user) {
-            let id = user.id
-            return Dib.find( { uid: id } ,(dibs,err) => {
+            let user = user
+            return Dib.find( { user: user } ,(dibs,err) => {
                 if (err) {
                     return [];
                 }
@@ -31,7 +31,11 @@ export const dibs = (root,args) => {
 }
 
 export const dibsForUser = (root,args) => {
-    return Dib.find({uid:root.id},(err,dibs) => {
+    let id = root.id
+    console.log(id);
+    let objID = new mongoose.Types.ObjectId(id)
+    
+    return Dib.find({ user: { $all: objID  }},(err,dibs) => {
         if (err) {
             return null
         } else {
@@ -57,7 +61,7 @@ export const createDib = (root,args) => {
             let newDib = new Dib();
             newDib.title = args.title;
             newDib.desc = args.desc;
-            newDib.uid = args.uid;
+            newDib.user = user;
             newDib.url = args.url;
             newDib.group = args.groupId;
             user.dibs.push(newDib);

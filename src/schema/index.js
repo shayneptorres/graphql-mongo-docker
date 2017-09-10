@@ -7,7 +7,6 @@ type Dib {
     title: String
     desc: String
     url: String
-    uid: String
     user: User
     group: Group
 }
@@ -35,7 +34,7 @@ type User {
 type Query {
     signUp(email: String, password: String, username: String) : User
     login(email: String, password: String) : User
-    dib(uid : String) : Dib
+    dib(id : String) : Dib
     dibs(uid: String, access_token: String) : [Dib]
     user(uid: String) : User
     group(id: String) : Group
