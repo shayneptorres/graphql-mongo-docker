@@ -1,5 +1,6 @@
 import { dib, dibs, dibsForUser, dibsForGroup, createDib } from "./dib-resolver";
-import { user, usersForGroup } from "./user-resolver";
+import { usersForGroup } from "./users/index";
+import { user } from "./user-resolver";
 import { signUp } from "./signUpResolver";
 import { login } from "./loginResolver";
 import { group, groupsByName, createGroup, groupsForUser, groupForDib } from "./groupResolver";
